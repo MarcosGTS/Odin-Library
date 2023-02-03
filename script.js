@@ -1,5 +1,4 @@
 const addBook = document.querySelector('#add-book');
-const myLibrary = [];
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -8,10 +7,55 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-Book.prototype.info = function info() {
-  const readMessage = this.read ? 'readed' : 'not read yet';
-  return `${this.title} by ${this.author}, ${this.pages} pages, ${readMessage}`;
-};
+let myLibrary = [
+  new Book('Hobbit', 'Marcos', 100, true),
+  new Book('Hobbit', 'Marcos', 100, false),
+  new Book('Hobbit', 'Marcos', 100, true),
+  new Book('Hobbit', 'Marcos', 100, true),
+];
+
+function bookToNode(book) {
+  const bookNode = document.createElement('div');
+  const removeBtn = document.createElement('button');
+  const readBtn = document.createElement('button');
+
+  bookNode.innerHTML = `
+    <h3>${book.title}</h3>
+    <div>${book.author}</div>
+    <span>${book.pages}</span>
+  `;
+
+  bookNode.classList.add('book');
+  if (book.read) bookNode.classList.add('read');
+
+  removeBtn.addEventListener('click', () => {
+    myLibrary = myLibrary.filter((el) => el !== book);
+  });
+
+  readBtn.addEventListener('click', () => {
+    bookNode.classList.toggle('read');
+  });
+
+  bookNode.appendChild(removeBtn);
+  bookNode.appendChild(readBtn);
+
+  return bookNode;
+}
+
+function displayBooks() {
+  const bookshelf = document.querySelector('#bookshelf');
+  bookshelf.innerHTML = '';
+
+  myLibrary.forEach((book) => {
+    const node = bookToNode(book);
+    bookshelf.appendChild(node);
+  });
+
+  const inputList = document.querySelectorAll('.book button');
+  inputList.forEach((input) => {
+    input.addEventListener('click', displayBooks);
+  });
+}
 
 function addBookToLibrary() {
   const title = document.querySelector('#title').value;
@@ -22,11 +66,12 @@ function addBookToLibrary() {
   const newBook = new Book(title, author, pages, read);
 
   myLibrary.push(newBook);
-
-  console.log(myLibrary);
+  displayBooks();
 }
 
 addBook.addEventListener('click', (e) => {
   e.preventDefault();
   addBookToLibrary();
 });
+
+displayBooks();
