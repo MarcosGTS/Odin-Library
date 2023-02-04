@@ -24,9 +24,9 @@ function bookToNode(book) {
   const readBtn = document.createElement('button');
 
   bookNode.innerHTML = `
-    <h3>${book.title}</h3>
-    <div>${book.author}</div>
-    <span>${book.pages}</span>
+    <h3 class="title">${book.title}</h3>
+    <div class="author">Author: ${book.author}</div>
+    <div class="num-pages">Number of pages: ${book.pages}</div>
   `;
 
   bookNode.classList.add('book');
@@ -36,7 +36,16 @@ function bookToNode(book) {
     myLibrary = myLibrary.filter((el) => el !== book);
   });
 
-  readBtn.addEventListener('click', () => book.toggleRead());
+  readBtn.addEventListener('click', () => {
+    bookNode.classList.toggle('read');
+    book.toggleRead();
+  });
+
+  removeBtn.classList.add('rm-btn');
+  readBtn.classList.add('read-btn');
+
+  removeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+  readBtn.innerHTML = '<i class="fa-solid fa-bookmark"></i>';
 
   bookNode.appendChild(removeBtn);
   bookNode.appendChild(readBtn);
@@ -53,12 +62,11 @@ function displayBooks() {
     bookshelf.appendChild(node);
   });
 
-  const inputList = document.querySelectorAll('.book button');
+  const inputList = document.querySelectorAll('.book .rm-btn');
+
   inputList.forEach((input) => {
     input.addEventListener('click', displayBooks);
   });
-
-  console.log(myLibrary);
 }
 
 function addBookToLibrary() {

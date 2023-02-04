@@ -14,6 +14,10 @@
 
 .book {
   position: relative;
+ 
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, auto);
 
   width: 180px;
   height: 220px;
@@ -28,17 +32,33 @@
 }
 
 .book:hover {
+  display: grid;
   width: 280px;
 }
 
-.book button {
-  transform: scale(0);
+.title {
+  text-align: center;
+}
 
+.title,
+.author,
+.num-pages{
+  grid-column: 1 / span 2;
+}
+
+.book button,
+.author,
+.num-pages {
+  opacity: 0;
+  transform: translateX(calc(2 * var(--spacing)));
   transition: all 1s ease;
 }
 
-.book:hover button {
-  transform: scale(1);
+.book:hover button,
+.book:hover .author,
+.book:hover .num-pages {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .book::before {
@@ -68,10 +88,28 @@
 }
 
 .book button {
-  width:  30%;
-  height: 10%;
+  place-self: center;
+  
+  font-size: 24px;
+  width: 48px;
+
+  border-radius: 4px;
+  
+  background-color: rgba(0, 0, 0, 0);
+
+  transition: all 250ms ease;
+}
+
+.book button:hover {
+  transform: scale(1.2);
+}
+
+.read-btn {
+  color: green;
+  border: 2px solid green
 }
 
 .rm-btn {
-  background-color: red;
+  color: red;
+  border: 2px solid red;
 }
