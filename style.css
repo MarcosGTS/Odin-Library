@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  --spacing: 20px;
+}
+
+#bookshelf {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing);
+}
+
+.book {
+  position: relative;
+
+  width: 180px;
+  height: 220px;
+
+  padding: var(--spacing);
+
+  border-radius: 8px;
+  
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, .5);
+
+  transition: all 1s ease;
+}
+
+.book:hover {
+  width: 280px;
+}
+
+.book button {
+  transform: scale(0);
+
+  transition: all 1s ease;
+}
+
+.book:hover button {
+  transform: scale(1);
+}
+
+.book::before {
+  content: "READ";
+  position: absolute;
+  display: block;
+
+  right: var(--spacing);
+
+  font-size: 1.5rem;
+  padding: 0.25rem  .8rem;
+  
+  color: green;
+
+  border: 2px solid green;
+  border-radius: 4px;
+
+  opacity: 0;
+  transform: translateY(-60px) scale(1.4) rotate(-5deg);
+  
+  transition: all 180ms ease-out;
+}
+
+.read.book::before {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotate(10deg);
+}
+
+.book button {
+  width:  30%;
+  height: 10%;
+}
+
+.rm-btn {
+  background-color: red;
+}
