@@ -7,6 +7,10 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
+Book.prototype.toggleRead = function toggleRead() {
+  this.read = !this.read;
+};
+
 let myLibrary = [
   new Book('Hobbit', 'Marcos', 100, true),
   new Book('Hobbit', 'Marcos', 100, false),
@@ -32,9 +36,7 @@ function bookToNode(book) {
     myLibrary = myLibrary.filter((el) => el !== book);
   });
 
-  readBtn.addEventListener('click', () => {
-    bookNode.classList.toggle('read');
-  });
+  readBtn.addEventListener('click', () => book.toggleRead());
 
   bookNode.appendChild(removeBtn);
   bookNode.appendChild(readBtn);
@@ -55,6 +57,8 @@ function displayBooks() {
   inputList.forEach((input) => {
     input.addEventListener('click', displayBooks);
   });
+
+  console.log(myLibrary);
 }
 
 function addBookToLibrary() {
