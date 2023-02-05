@@ -14,6 +14,7 @@
   <span class="logo">Library</span>
   </header>
   <main>
+    <button id="popup-btn">Add Book</button>
     <div id="bookshelf">
       <div class="book">
         <h3>Hobbit</h3>
@@ -21,28 +22,30 @@
         <span>100</span>     
       </div>
     </div>
-    <form action="">
-      <div>
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title">
-      </div>
-      <div>
-        <label for="author">Author</label>
-        <input type="text" name="author" id="author">
-      </div>
-      <div>
-        <label for="pages">Pages</label>
-        <input type="number" name="pages" id="pages">
-      </div>
-      <div>
-        <label for="read">Read</label>
-        <input type="checkbox" id="read" name="read">
-      </div>
-      <div>
-        <button type="submit" id="add-book">Add book</button>
-      </div>
-    </form>
 
+    <div id="book-modal">
+      <form id='book-form' action="">
+        <div>
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title">
+        </div>
+        <div>
+          <label for="author">Author</label>
+          <input type="text" name="author" id="author">
+        </div>
+        <div>
+          <label for="pages">Pages</label>
+          <input type="number" name="pages" id="pages">
+        </div>
+        <div>
+          <label for="read">Read</label>
+          <input type="checkbox" id="read" name="read">
+        </div>
+        <div>
+          <button type="submit" id="add-book">Add book</button>
+        </div>
+      </form>
+    </div>
   </main>
   <footer>
 

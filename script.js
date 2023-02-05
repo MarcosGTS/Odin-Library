@@ -1,4 +1,5 @@
 const addBook = document.querySelector('#add-book');
+const popupBtn = document.querySelector('#popup-btn');
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -84,6 +85,28 @@ function addBookToLibrary() {
 addBook.addEventListener('click', (e) => {
   e.preventDefault();
   addBookToLibrary();
+});
+
+// popup logic
+const modal = document.querySelector('#book-modal');
+
+modal.addEventListener('click', (e) => {
+  const targetId = e.target.id;
+
+  if (['book-modal', 'add-book'].includes(targetId)) {
+    modal.classList.remove('showing');
+    modal.classList.add('hiding');
+  }
+
+  modal.addEventListener('animationend', () => {
+    modal.classList.add('hide');
+    modal.classList.remove('hiding');
+  }, { once: true });
+});
+
+popupBtn.addEventListener('click', () => {
+  modal.classList.remove('hide');
+  modal.classList.add('showing');
 });
 
 displayBooks();
