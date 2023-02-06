@@ -35,6 +35,7 @@ function bookToNode(book) {
 
   removeBtn.addEventListener('click', () => {
     myLibrary = myLibrary.filter((el) => el !== book);
+    bookNode.remove();
   });
 
   readBtn.addEventListener('click', () => {
@@ -51,16 +52,20 @@ function bookToNode(book) {
   bookNode.appendChild(removeBtn);
   bookNode.appendChild(readBtn);
 
+  bookNode.dataset.title = book.title;
+
   return bookNode;
 }
 
 function displayBooks() {
-  const bookshelf = document.querySelector('#bookshelf');
-  bookshelf.innerHTML = '';
-
   myLibrary.forEach((book) => {
+    const bookshelf = document.querySelector('#bookshelf');
+    const htmlBooks = [...bookshelf.childNodes];
+    const hasBook = htmlBooks.some((htmlBook) => htmlBook.dataset.title === book.title);
     const node = bookToNode(book);
-    bookshelf.appendChild(node);
+    if (!hasBook) {
+      bookshelf.appendChild(node);
+    }
   });
 
   const inputList = document.querySelectorAll('.book .rm-btn');
