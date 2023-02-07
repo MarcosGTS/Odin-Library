@@ -7,9 +7,16 @@
 
   font-family:'PT sans', Arial, Helvetica, sans-serif;
   --spacing: 20px;
+  --accept-color: #16a34a;
+  --cancel-color: #9d174d;
+}
+
+body {
+  background-color: #f8fafc;
 }
 
 header {
+  background-color: white;
   padding: 1rem;
   box-shadow: 0 0 4px 2px rgba(0, 0, 0, .2);
 }
@@ -26,7 +33,7 @@ main {
 }
 
 #popup-btn {
-  margin: 2rem 0;
+  margin: 2.5rem 0;
 
   width: fit-content;
   height: 2rem;
@@ -36,7 +43,7 @@ main {
 
   cursor: pointer;
 
-  color: gainsboro;
+  color: rgba(0, 0, 0, .5);
   border: none;
   background-color: rgba(0, 0, 0, 0);
 
@@ -102,6 +109,9 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  border-radius: 4px;
+  background-color: white;
 }
 
 .title {
@@ -145,12 +155,12 @@ main {
 
 .read-btn {
   border-radius: 0 4px 4px 0;
-  background-color: green;
+  background-color: var(--accept-color);
 }
 
 .rm-btn {
   border-radius: 4px 0 0 4px;
-  background-color: red;
+  background-color: var(--cancel-color);
 }
 
 .card-front::before {
@@ -163,9 +173,9 @@ main {
   font-size: 1.5rem;
   padding: 0.25rem  .8rem;
   
-  color: green;
+  color: var(--accept-color);
 
-  border: 2px solid green;
+  border: 2px solid var(--accept-color);
   border-radius: 4px;
 
   opacity: 0;
@@ -201,6 +211,19 @@ main {
   height: 2rem;
   width: 100%;
   font-size: 80%;
+}
+
+#book-form button {
+  border: none;
+  border-radius: 4px;
+  color: white;
+
+  transition: all 200ms ease;
+}
+
+#book-form button:hover {
+  transform: scale(1.05);
+  font-weight: bold;
 }
 
 #book-form div:nth-child(5) {
