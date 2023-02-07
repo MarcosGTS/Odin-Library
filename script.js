@@ -18,16 +18,21 @@ let myLibrary = [
 
 function bookToNode(book) {
   const bookNode = document.createElement('div');
+  const contendNode = document.createElement('div');
   const removeBtn = document.createElement('button');
   const readBtn = document.createElement('button');
 
-  bookNode.innerHTML = `
-    <h3 class="title">${book.title}</h3>
-    <div class="author">Author: ${book.author}</div>
-    <div class="num-pages">Number of pages: ${book.pages}</div>
+  contendNode.innerHTML = `
+    <div class='card-front'>
+      <h3 class="title">${book.title}</h3>
+      <div class="author">${book.author}</div>
+      <div class="num-pages">${book.pages}</div>
+    </div>
   `;
 
   bookNode.classList.add('book');
+  contendNode.classList.add('card-content');
+
   if (book.read) bookNode.classList.add('read');
 
   removeBtn.addEventListener('click', () => {
@@ -46,9 +51,15 @@ function bookToNode(book) {
   removeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
   readBtn.innerHTML = '<i class="fa-solid fa-bookmark"></i>';
 
-  bookNode.appendChild(removeBtn);
-  bookNode.appendChild(readBtn);
+  const cardBack = document.createElement('div');
+  cardBack.classList.add('card-back');
 
+  cardBack.appendChild(removeBtn);
+  cardBack.appendChild(readBtn);
+
+  contendNode.appendChild(cardBack);
+
+  bookNode.appendChild(contendNode);
   bookNode.dataset.title = book.title;
 
   return bookNode;
