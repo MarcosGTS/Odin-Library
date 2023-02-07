@@ -14,9 +14,6 @@ Book.prototype.toggleRead = function toggleRead() {
 
 let myLibrary = [
   new Book('Hobbit', 'Marcos', 100, true),
-  new Book('Hobbit', 'Marcos', 100, false),
-  new Book('Hobbit', 'Marcos', 100, true),
-  new Book('Hobbit', 'Marcos', 100, true),
 ];
 
 function bookToNode(book) {
@@ -80,10 +77,11 @@ function addBookToLibrary() {
   const author = document.querySelector('#author').value;
   const pages = document.querySelector('#pages').value;
   const read = document.querySelector('#read').checked;
+  const hasBook = myLibrary.some((book) => book.title === title);
 
-  const newBook = new Book(title, author, pages, read);
+  if (hasBook) return;
 
-  myLibrary.push(newBook);
+  myLibrary.push(new Book(title, author, pages, read));
   displayBooks();
 }
 

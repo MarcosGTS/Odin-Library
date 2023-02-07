@@ -1,15 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 
+  font-family:'PT sans', Arial, Helvetica, sans-serif;
   --spacing: 20px;
 }
 
+header {
+  padding: 1rem;
+  box-shadow: 0 0 4px 2px rgba(0, 0, 0, .2);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  font-size: clamp(1rem, 2vw, 2rem);
+  font-weight: bold;
+}
+
+#popup-btn {
+  margin: 2rem 0;
+
+  width: fit-content;
+  height: 2rem;
+
+  font-size: 2rem;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  color: gainsboro;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+
+  transition: all 200ms ease-out;
+}
+
+#popup-btn::before {
+  content: '+';
+}
+
+#popup-btn:hover {
+  color: black;
+  font-size: 2.2rem;
+}
+
+/* change to grid for auto fit */
 #bookshelf {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--spacing);
+  padding: 0 2rem;
 }
 
 .book {
@@ -116,13 +165,41 @@
 
 /* Popup logic */
 
-#book-modal.hide {
-  display: none;
+#book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  padding: 1rem;
+  width: min(100vw, 350px);
+  background-color: white;
+
+  font-size: 1.3rem;
+
+  border-radius: 4px;
 }
 
-#book-form {
-  padding: 1rem;
-  background-color: white;
+#book-form input:not([type='checkbox']),
+#book-form button {
+  height: 2rem;
+  width: 100%;
+  font-size: 80%;
+}
+
+#book-form div:nth-child(5) {
+  display: flex;
+  align-items: center;
+}
+
+#book-form input[type='checkbox'] {
+  margin-left: .5rem;
+}
+
+#book-form div:nth-last-child(1) {
+  display: flex;
+  flex-direction: column;
+
+  gap: .5rem;
 }
 
 #book-modal.showing #book-form {
@@ -130,7 +207,11 @@
 }
 
 #book-modal.hiding #book-form {
-   animation: shrink 500ms forwards;
+  animation: shrink 500ms forwards;
+}
+
+#book-modal.hide {
+  display: none;
 }
 
 #book-modal{
