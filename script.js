@@ -25,7 +25,7 @@ function bookToNode(book) {
   contendNode.innerHTML = `
     <div class='card-front'>
       <h3 class="title">${book.title}</h3>
-      <div class="author">${book.author}</div>
+      <div class="author"><span>by</span> ${book.author}</div>
       <div class="num-pages">${book.pages}</div>
     </div>
   `;

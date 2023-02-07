@@ -81,27 +81,44 @@ main {
 
 .card-front,
 .card-back {
-  width: 100%;
-  height: 100%;
-
-  padding: var(--spacing);
-
-  border-radius: 4px;
-  
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, .2);
-
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
 
+  width: 100%;
+  height: 100%;
+
+  padding: var(--spacing);
+  border-radius: 4px;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, .2);
+  
   backface-visibility: hidden;
-  position: absolute;
 }
 
 .card-front {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.title {
+  text-align: center;
+  font-size: 1.5rem;
+  flex: auto;
+
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.num-pages {
+  position: absolute;
+  right: calc(var(--spacing) / 2);
+  bottom: calc(var(--spacing) / 2);
+}
+
 
 .card-back {
   padding: 0;
@@ -136,10 +153,6 @@ main {
   background-color: red;
 }
 
-.title {
-  text-align: center;
-}
-
 .card-front::before {
   content: "READ";
   position: absolute;
@@ -164,7 +177,7 @@ main {
 
 .read.book .card-front::before {
   opacity: 1;
-  transform: translateY(0) scale(1) rotate(10deg);
+  transform: translateY(50px) scale(1) rotate(10deg);
 }
 
 /* Popup logic */
