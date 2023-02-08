@@ -33,7 +33,7 @@ main {
 }
 
 #popup-btn {
-  margin: 2.5rem 0;
+  margin: 2rem 0;
 
   width: fit-content;
   height: 2rem;
@@ -131,7 +131,6 @@ main {
   bottom: calc(var(--spacing) / 2);
 }
 
-
 .card-back {
   padding: 0;
   display: flex;
@@ -168,7 +167,6 @@ main {
 .card-front::before {
   content: "READ";
   position: absolute;
-  display: block;
 
   right: var(--spacing);
 
@@ -267,16 +265,16 @@ main {
   align-items: center;
 }
 
-#book-modal[data-animation="shrink"] {
+*[data-animation="shrink"] {
   animation: shrink 250ms forwards;
 }
 
-#book-modal[data-animation="fadein"] 
+*[data-animation="fadein"] 
 {
   animation: fadein 500ms forwards;
 }
 
-#book-modal[data-animation="fadeout"] {
+*[data-animation="fadeout"] {
   animation: fadeout 500ms forwards;
 }
 

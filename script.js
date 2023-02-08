@@ -36,7 +36,7 @@ function bookToNode(book) {
   if (book.read) bookNode.classList.add('read');
 
   removeBtn.addEventListener('click', () => {
-    bookNode.classList.add('shrink');
+    bookNode.dataset.animation = 'shrink';
     bookNode.addEventListener('animationend', () => {
       myLibrary = myLibrary.filter((el) => el !== book);
       bookNode.remove();
@@ -107,16 +107,16 @@ addBook.addEventListener('click', (e) => {
 // popup logic
 const modal = document.querySelector('#book-modal');
 
-modal.addEventListener('click', (e) => {
-  const targetId = e.target.id;
-
-  if (['book-modal', 'add-book'].includes(targetId)) {
-    modal.dataset.animation = 'fadein';
-  }
-
+function hideModal() {
+  modal.dataset.animation = 'fadein';
   modal.addEventListener('animationend', () => {
     modal.dataset.animation = 'hide';
   }, { once: true });
+}
+
+modal.addEventListener('click', (e) => {
+  const targetId = e.target.id;
+  if (targetId === 'book-modal') hideModal();
 });
 
 popupBtn.addEventListener('click', () => {
