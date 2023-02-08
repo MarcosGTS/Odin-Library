@@ -16,6 +16,12 @@ Book.prototype.toggleRead = function toggleRead() {
 
 let myLibrary = [
   new Book('Hobbit', 'Marcos', 100, true),
+  new Book('Hobbit1', 'Marcos', 100, true),
+  new Book('Hobbit2', 'Marcos', 100, true),
+  new Book('Hobbit3', 'Marcos', 100, true),
+  new Book('Hobbit4', 'Marcos', 100, true),
+  new Book('Hobbit5', 'Marcos', 100, true),
+  new Book('Hobbit6', 'Marcos', 100, true),
 ];
 
 function bookToNode(book) {
