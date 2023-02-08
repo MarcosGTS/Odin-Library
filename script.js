@@ -1,4 +1,6 @@
+const form = document.querySelector('#book-form');
 const addBook = document.querySelector('#add-book');
+const cancelBtn = document.querySelector('#cancel-btn');
 const popupBtn = document.querySelector('#popup-btn');
 
 function Book(title, author, pages, read) {
@@ -99,11 +101,6 @@ function addBookToLibrary() {
   displayBooks();
 }
 
-addBook.addEventListener('click', (e) => {
-  e.preventDefault();
-  addBookToLibrary();
-});
-
 // popup logic
 const modal = document.querySelector('#book-modal');
 
@@ -123,8 +120,18 @@ popupBtn.addEventListener('click', () => {
   modal.dataset.animation = 'fadeout';
 });
 
-displayBooks();
+addBook.addEventListener('click', (e) => {
+  if (form.checkValidity()) {
+    e.preventDefault();
+    addBookToLibrary();
+    hideModal();
+    form.reset();
+  }
+});
 
-// adicionar verificacao formulario
-// - requerimentos
-// - limpar campo
+cancelBtn.addEventListener('click', () => {
+  hideModal();
+  form.reset();
+});
+
+displayBooks();
