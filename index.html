@@ -17,20 +17,25 @@
     <button id="popup-btn">Add Book</button>
     <div id="bookshelf"></div>
 
-    <div id="book-modal" class="hide">
+    <div id="book-modal" data-animation="hide">
       <form id='book-form' action="">
         <h3>Book info</h3>
         <div>
           <label for="title">Title</label>
-          <input type="text" name="title" id="title">
+          <input 
+            type="text" name="title" id="title" maxlength="60" required>
         </div>
         <div>
           <label for="author">Author</label>
-          <input type="text" name="author" id="author">
+          <input type="text" name="author" id="author" maxlength="30" required>
         </div>
         <div>
           <label for="pages">Pages</label>
-          <input type="number" name="pages" id="pages">
+          <input type="number" 
+            name="pages" 
+            id="pages"
+            min="1"
+            required>
         </div>
         <div>
           <label for="read">Read</label>

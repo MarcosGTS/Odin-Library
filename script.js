@@ -36,8 +36,11 @@ function bookToNode(book) {
   if (book.read) bookNode.classList.add('read');
 
   removeBtn.addEventListener('click', () => {
-    myLibrary = myLibrary.filter((el) => el !== book);
-    bookNode.remove();
+    bookNode.classList.add('shrink');
+    bookNode.addEventListener('animationend', () => {
+      myLibrary = myLibrary.filter((el) => el !== book);
+      bookNode.remove();
+    });
   });
 
   readBtn.addEventListener('click', () => {
@@ -108,19 +111,20 @@ modal.addEventListener('click', (e) => {
   const targetId = e.target.id;
 
   if (['book-modal', 'add-book'].includes(targetId)) {
-    modal.classList.remove('showing');
-    modal.classList.add('hiding');
+    modal.dataset.animation = 'fadein';
   }
 
   modal.addEventListener('animationend', () => {
-    modal.classList.add('hide');
-    modal.classList.remove('hiding');
+    modal.dataset.animation = 'hide';
   }, { once: true });
 });
 
 popupBtn.addEventListener('click', () => {
-  modal.classList.remove('hide');
-  modal.classList.add('showing');
+  modal.dataset.animation = 'fadeout';
 });
 
 displayBooks();
+
+// adicionar verificacao formulario
+// - requerimentos
+// - limpar campo

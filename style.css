@@ -71,6 +71,8 @@ main {
 .book { 
   width: 180px;
   height: 220px;
+
+  animation: grow 250ms forwards;
 }
 
 .card-content {
@@ -116,7 +118,7 @@ main {
 
 .title {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   flex: auto;
 
   width: 100%;
@@ -242,16 +244,12 @@ main {
   gap: .5rem;
 }
 
-#book-modal.showing #book-form {
-  animation: slide-right 500ms forwards;
+#book-modal[data-animation="fadeout"] #book-form {
+  animation: grow 500ms forwards;
 }
 
-#book-modal.hiding #book-form {
+#book-modal[data-animation="fadein"] #book-form {
   animation: shrink 500ms forwards;
-}
-
-#book-modal.hide {
-  display: none;
 }
 
 #book-modal{
@@ -269,12 +267,21 @@ main {
   align-items: center;
 }
 
-.hiding {
+#book-modal[data-animation="shrink"] {
+  animation: shrink 250ms forwards;
+}
+
+#book-modal[data-animation="fadein"] 
+{
   animation: fadein 500ms forwards;
 }
 
-.showing {
+#book-modal[data-animation="fadeout"] {
   animation: fadeout 500ms forwards;
+}
+
+#book-modal[data-animation="hide"] {
+  display: none;
 }
 
 @keyframes fadein {
@@ -297,13 +304,13 @@ main {
   }
 }
 
-@keyframes slide-right {
+@keyframes grow {
   from {
-    transform: translateX(-100%);
+    transform: scale(0);
   }
 
   to {
-    transform: translateX(0);
+    transform: scale(1);
   }
 }
 
