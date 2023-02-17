@@ -3,25 +3,23 @@ const addBook = document.querySelector('#add-book');
 const cancelBtn = document.querySelector('#cancel-btn');
 const popupBtn = document.querySelector('#popup-btn');
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+
+  toggleRead() {
+    this.read = !this.read;
+  }
 }
 
-Book.prototype.toggleRead = function toggleRead() {
-  this.read = !this.read;
-};
-
 let myLibrary = [
-  new Book('Hobbit', 'Marcos', 100, true),
-  new Book('Hobbit1', 'Marcos', 100, true),
-  new Book('Hobbit2', 'Marcos', 100, true),
-  new Book('Hobbit3', 'Marcos', 100, true),
-  new Book('Hobbit4', 'Marcos', 100, true),
-  new Book('Hobbit5', 'Marcos', 100, true),
-  new Book('Hobbit6', 'Marcos', 100, true),
+  new Book('Harry Potter and The Sorcerers Stone', 'J. K. Rowling', 336, true),
+  new Book('Deep Work', 'Cal Newport', 425, true),
+  new Book('Animal Farm', 'George Orwell', 107, true),
 ];
 
 function bookToNode(book) {
