@@ -228,6 +228,13 @@ footer a {
   height: 2rem;
   width: 100%;
   font-size: 80%;
+
+  border: 2px solid;
+  border-radius: 4px ;
+}
+
+#book-form .user-invalid:invalid {
+  border-color: red;
 }
 
 #book-form button {
@@ -251,6 +258,7 @@ footer a {
 #book-form input[type='checkbox'] {
   margin-left: .5rem;
 }
+
 
 #book-form div:nth-last-child(1) {
   display: flex;

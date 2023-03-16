@@ -1,4 +1,5 @@
 const form = document.querySelector('#book-form');
+const formFields = [...form.querySelectorAll('input')];
 const addBook = document.querySelector('#add-book');
 const cancelBtn = document.querySelector('#cancel-btn');
 const popupBtn = document.querySelector('#popup-btn');
@@ -124,18 +125,31 @@ popupBtn.addEventListener('click', () => {
   modal.dataset.animation = 'fadeout';
 });
 
+
+// Form validation
+function setUserValidation({ target }) {
+  target.classList.add('user-invalid');
+}
+
+function resetForm() {
+  hideModal();
+  form.reset();
+  formFields.forEach((field) => {
+    field.classList.remove('user-invalid');
+  });
+}
+
 addBook.addEventListener('click', (e) => {
   if (form.checkValidity()) {
     e.preventDefault();
     addBookToLibrary();
-    hideModal();
-    form.reset();
+    resetForm();
+  } else {
+    formFields.forEach((field) => setUserValidation({target: field}));
   }
 });
 
-cancelBtn.addEventListener('click', () => {
-  hideModal();
-  form.reset();
-});
+cancelBtn.addEventListener('click', resetForm);
+formFields.forEach((field) => field.addEventListener('click', setUserValidation));
 
 displayBooks();
